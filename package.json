@@ -12,7 +12,8 @@
         "svelte": "^3.0.0"
     },
     "dependencies": {
-        "sirv-cli": "^1.0.1"
+        "sirv-cli": "^1.0.1",
+        "smelte": "^1.0.16"
     },
     "scripts": {
         "build": "rollup -c",
