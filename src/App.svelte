@@ -15,7 +15,9 @@
 </script>
 
 {#if ready}
-    <main>
-        <Button>Click here!</Button>
-    </main>
+    <ul>
+        {#each Heroes as { name }}
+            <li>{name}</li>
+        {/each}
+    </ul>
 {/if}
