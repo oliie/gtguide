@@ -3,15 +3,15 @@
     import { onMount } from 'svelte';
     import Button from 'smelte/src/components/Button';
 
-    export let date;
+    let ready = false;
 
-    onMount(async () => {
-        const res = await fetch('/api/date');
-        const newDate = await res.text();
-        date = newDate;
+    onMount(() => {
+        ready = true;
     });
 </script>
 
-<main>
-    <Button>Click here!</Button>
-</main>
+{#if ready}
+    <main>
+        <Button>Click here!</Button>
+    </main>
+{/if}
