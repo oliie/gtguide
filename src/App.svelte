@@ -2,10 +2,14 @@
     import 'smelte/src/tailwind.css';
     import { onMount } from 'svelte';
     import Button from 'smelte/src/components/Button';
+    import Flex from 'svelte-flex';
+    import { Heroes } from './db';
 
     let ready = false;
 
-    onMount(() => {
+    console.log(Heroes);
+
+    onMount(async () => {
         ready = true;
     });
 </script>
