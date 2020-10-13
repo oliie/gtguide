@@ -1,39 +1,15 @@
-const ROLES = {
-    TANK: 'Tanker',
-    RANGED: 'Ranged',
-    WARRIOR: 'Warrior',
-};
-
-const ELEMENTS = {
-    WATER: 'Water',
-    FIRE: 'Fire',
-    EARTH: 'Earth',
-    DARK: 'Dark',
-    LIGHT: 'Light',
-    BASIC: 'Basic',
-};
-
-const BUFFS = {
-    PARTY_HP: '[Party] HP',
-    PARTY_SKILL_ATK: '[Party] Skill Atk',
-    PARTY_DEF: '[Party] Def',
-    PARTY_RANGED_ATK: '[Party] Range Atk',
-    SKILL_ATK: 'Skill Atk',
-    WEAPON_SKILL_REGEN_SPEED: 'Weapon Skill Regen Speed',
-    SHIELD_INCREASE_ON_BATTLE_START: 'Shield increase on battle start',
-    HP_ON_ENEMY_KILL: 'HP Recovery on enemy kill',
-    ATK_ON_ENEMY_KILL: 'Atk increase on enemy kill',
-};
+import type { IHero } from "../interfaces";
+import { EElement, ERole, EBuff } from "../enums";
 
 const pair = (type, value) => {
     return { type, value };
 };
 
-const Heroes = [
+const Heroes: IHero[] = [
     {
         name: 'Marina',
-        element: ELEMENTS.WATER,
-        role: ROLES.TANK,
+        element: EElement.Water,
+        role: ERole.Tanker,
         stats: {
             atk: {
                 0: [148, 161, 175],
@@ -53,17 +29,17 @@ const Heroes = [
             dmgReduction: 19,
             critChance: 0,
             cardSlots: 2,
-            resistances: [pair(ELEMENTS.FIRE, 30), pair(ELEMENTS.EARTH, -30)],
+            resistances: [pair(EElement.Fire, 30), pair(EElement.Earth, -30)],
             buffs: [
-                pair(BUFFS.PARTY_HP, [12, 27, 40]),
-                pair(BUFFS.WEAPON_SKILL_REGEN_SPEED, 8),
+                pair(EBuff.PARTY_HP, [12, 27, 40]),
+                pair(EBuff.WEAPON_SKILL_REGEN_SPEED, 8),
             ],
         },
     },
     {
         name: 'Bari',
-        element: ELEMENTS.EARTH,
-        role: ROLES.RANGED,
+        element: EElement.Earth,
+        role: ERole.Ranged,
         stats: {
             atk: {
                 0: [219, 238, 259],
@@ -83,17 +59,17 @@ const Heroes = [
             dmgReduction: 22,
             critChance: 4,
             cardSlots: 2,
-            resistances: [pair(ELEMENTS.FIRE, -30), pair(ELEMENTS.WATER, 30)],
+            resistances: [pair(EElement.Fire, -30), pair(EElement.Water, 30)],
             buffs: [
-                pair(BUFFS.PARTY_SKILL_ATK, [25, 45, 80]),
-                pair(BUFFS.SHIELD_INCREASE_ON_BATTLE_START, 10),
+                pair(EBuff.PARTY_SKILL_ATK, [25, 45, 80]),
+                pair(EBuff.SHIELD_INCREASE_ON_BATTLE_START, 10),
             ],
         },
     },
     {
         name: 'Oghma',
-        element: ELEMENTS.DARK,
-        role: ROLES.TANK,
+        element: EElement.Dark,
+        role: ERole.Tanker,
         stats: {
             atk: {
                 0: [131, 142, 154],
@@ -113,18 +89,18 @@ const Heroes = [
             dmgReduction: 22,
             critChance: 0,
             cardSlots: 2,
-            resistances: [pair(ELEMENTS.BASIC, 30), pair(ELEMENTS.LIGHT, -30)],
+            resistances: [pair(EElement.Basic, 30), pair(EElement.Light, -30)],
             buffs: [
-                pair(BUFFS.PARTY_DEF, [15, 45, 45]),
-                pair(BUFFS.WEAPON_SKILL_REGEN_SPEED, 4),
-                pair(BUFFS.HP_ON_ENEMY_KILL, [null, null, 1]),
+                pair(EBuff.PARTY_DEF, [15, 45, 45]),
+                pair(EBuff.WEAPON_SKILL_REGEN_SPEED, 4),
+                pair(EBuff.HP_ON_ENEMY_KILL, [null, null, 1]),
             ],
         },
     },
     {
         name: 'Vishuvac',
-        element: ELEMENTS.FIRE,
-        role: ROLES.WARRIOR,
+        element: EElement.Fire,
+        role: ERole.Warrior,
         stats: {
             atk: {
                 0: [151, 161, 171],
@@ -144,18 +120,18 @@ const Heroes = [
             dmgReduction: 26,
             critChance: 4,
             cardSlots: 2,
-            resistances: [pair(ELEMENTS.WATER, -30), pair(ELEMENTS.EARTH, 30)],
+            resistances: [pair(EElement.Water, -30), pair(EElement.Earth, 30)],
             buffs: [
-                pair(BUFFS.PARTY_HP, [13, 29, 40]),
-                pair(BUFFS.SKILL_ATK, [null, null, 5]),
-                pair(BUFFS.ATK_ON_ENEMY_KILL, [null, null, 5]),
+                pair(EBuff.PARTY_HP, [13, 29, 40]),
+                pair(EBuff.SKILL_ATK, [null, null, 5]),
+                pair(EBuff.ATK_ON_ENEMY_KILL, [null, null, 5]),
             ],
         },
     },
     {
         name: 'Tinia',
-        element: ELEMENTS.EARTH,
-        role: ROLES.RANGED,
+        element: EElement.Earth,
+        role: ERole.Ranged,
         stats: {
             atk: {
                 0: [155, 168, 183],
@@ -175,11 +151,11 @@ const Heroes = [
             dmgReduction: 30,
             critChance: 3,
             cardSlots: 2,
-            resistances: [pair(ELEMENTS.FIRE, -30), pair(ELEMENTS.WATER, 30)],
+            resistances: [pair(EElement.Fire, -30), pair(EElement.Water, 30)],
             buffs: [
-                pair(BUFFS.PARTY_RANGED_ATK, [15, 25, 50]),
-                pair(BUFFS.ATK_ON_ENEMY_KILL, [null, null, 5]),
-                pair(BUFFS.HP_ON_ENEMY_KILL, [null, null, 0.5]),
+                pair(EBuff.PARTY_RANGED_ATK, [15, 25, 50]),
+                pair(EBuff.ATK_ON_ENEMY_KILL, [null, null, 5]),
+                pair(EBuff.HP_ON_ENEMY_KILL, [null, null, 0.5]),
             ],
         },
     },

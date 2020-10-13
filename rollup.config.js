@@ -4,11 +4,13 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import smelte from 'smelte/rollup-plugin-smelte';
+import autoPreprocess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-    input: 'src/main.js',
+    input: 'src/main.ts',
     output: {
         sourcemap: true,
         format: 'iife',
@@ -24,8 +26,8 @@ export default {
             css: (css) => {
                 css.write('public/bundle.css');
             },
+            preprocess: autoPreprocess(),
         }),
-
         // If you have external dependencies installed from
         // npm, you'll most likely need these plugins. In
         // some cases you'll need additional configuration —
@@ -33,6 +35,7 @@ export default {
         // https://github.com/rollup/rollup-plugin-commonjs
         resolve({ browser: true }),
         commonjs(),
+        typescript({ sourceMap: !production }),
 
         // Watch the `public` directory and refresh the
         // browser on changes when not in production
