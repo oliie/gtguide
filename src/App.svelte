@@ -1,23 +1,46 @@
 <script>
     import 'smelte/src/tailwind.css';
-    import { onMount } from 'svelte';
-    import Button from 'smelte/src/components/Button';
-    import Flex from 'svelte-flex';
-    import { Heroes } from './db';
+    import { Router, Route, Link } from 'svelte-routing';
+    import About from './views/About.svelte';
+    import Heroes from './views/Heroes.svelte';
+    import Home from './views/Home.svelte';
 
-    let ready = false;
+    export let url = '';
 
-    console.log(Heroes);
-
-    onMount(async () => {
-        ready = true;
-    });
+    const routers = [
+        {
+            label: 'Home',
+            path: 'home',
+            to: '/',
+            component: Home
+        },
+        {
+            label: 'About',
+            path: 'about',
+            to: '/about',
+            component: About
+        },
+        {
+            label: 'Heroes',
+            path: 'heroes',
+            to: '/heroes',
+            component: Heroes
+        }
+    ]
 </script>
 
-{#if ready}
-    <ul>
-        {#each Heroes as { name }}
-            <li>{name}</li>
+<h1>App.svelte</h1>
+
+<Router {url}>
+    <nav>
+        {#each routers as {label, to}}
+            <Link {to}>{label}</Link>
         {/each}
-    </ul>
-{/if}
+    </nav>
+    <div>
+        {#each routers as {path, component}}
+            <Route {path} {component} />
+        {/each}
+        <Route path="/"><Home /></Route>
+    </div>
+</Router>
