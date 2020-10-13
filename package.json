@@ -12,6 +12,7 @@
         "svelte": "^3.0.0"
     },
     "dependencies": {
+        "emotion": "^10.0.27",
         "sirv-cli": "^1.0.1",
         "smelte": "^1.0.16",
         "svelte-flex": "^1.1.0",
